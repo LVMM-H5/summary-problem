@@ -38,6 +38,8 @@
 
 ### JS相关
 * 无痕浏览模式下，localStorage、sessionStorage是禁用的，可使用cookie；
+* 多开webview，http(s)协议 cookie和localStorage可共享，sessionStorage不可共享；
+多开webview，file协议（本地化） localStorage可共享， cookie和sessionStorage不共享。
 * ios app和微信的webview会对ajax请求做缓存，当同一个接口连续两次请求发的参数完全一致时webview有可能会把缓存的响应结果直接传给回调函数并执行（调整系统时间后必现），此种现象会导致本来应该获取不同结果的接口始终返回同一个结果——加时间戳；
 * app的iPad兼容性问题：ua.indexOf("iPad; CPU OS")>-1，注意中间有个空格；
 * console.log异步：chrome或safri等WebKit的console.log并没有立即拍摄对象快照，相反，它只存储了一个指向对象的引用，然后在代码返回事件队列时才去拍摄快照；**Node的console.log是另一回事，它是严格同步的，因此同样的代码输出的却为{}。**
